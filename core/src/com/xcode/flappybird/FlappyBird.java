@@ -82,31 +82,29 @@ public class FlappyBird extends ApplicationAdapter {
 		batch.begin();
 		drawBackgroud();
 
-		if (gameState == 1) {
+		switch (gameState) {
+			case 1:
+				gameStateOne();
+				if (Gdx.input.justTouched()) {
 
-			gameStateOne();
+					velocity = -30;
 
-			if (Gdx.input.justTouched()) {
+				}
+				tubeLogic();
 
-				velocity = -30;
-
-			}
-
-			tubeLogic();
-
-			if (birdY > 0) { //keep bird moving hax velocity < 0
-				velocity = velocity + gravity;
-				birdY -= velocity;
-			} else {
-				gameState = 2;
-			}
-
-		} else if (gameState == 0) {
-
-			if (Gdx.input.justTouched()) {
-				gameState = 1;
-			}
-			} else if (gameState == 2) {
+				if (birdY > 0) { //keep bird moving hax velocity < 0
+					velocity = velocity + gravity;
+					birdY -= velocity;
+				} else {
+					gameState = 2;
+				}
+				break;
+			case 0:
+				if (Gdx.input.justTouched()) {
+					gameState = 1;
+				}
+				break;
+			case 2:
 				batch.draw(gameOver, Gdx.graphics.getWidth() / 2 - gameOver.getWidth() / 2, Gdx.graphics.getHeight() / 2 - gameOver.getWidth() / 2);
 
 				if (Gdx.input.justTouched()) {
@@ -117,7 +115,46 @@ public class FlappyBird extends ApplicationAdapter {
 					scoringTube = 0;
 					velocity = 0;
 				}
+				break;
+
 		}
+
+//		if (gameState == 1) {
+//
+//			gameStateOne();
+//
+//			if (Gdx.input.justTouched()) {
+//
+//				velocity = -30;
+//
+//			}
+//
+//			tubeLogic();
+//
+//			if (birdY > 0) { //keep bird moving hax velocity < 0
+//				velocity = velocity + gravity;
+//				birdY -= velocity;
+//			} else {
+//				gameState = 2;
+//			}
+
+//		} else if (gameState == 0) {
+//
+//			if (Gdx.input.justTouched()) {
+//				gameState = 1;
+//			}
+//			} else if (gameState == 2) {
+//				batch.draw(gameOver, GDXWidth / 2 - gameOver.getWidth() / 2, GDXHeight / 2 - gameOver.getWidth() / 2);
+//
+//				if (Gdx.input.justTouched()) {
+//					gameState = 1;
+//					//call start restart logic
+//					startRestartLogic();
+//					score = 0;
+//					scoringTube = 0;
+//					velocity = 0;
+//				}
+//		}
 
 		animateBird();
 
