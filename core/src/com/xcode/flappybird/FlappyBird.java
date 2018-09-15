@@ -1,9 +1,10 @@
 package com.xcode.flappybird;
 
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.math.Rectangle;
 import java.util.Random;
 
 public class FlappyBird extends ApplicationAdapter {
+    Music backgroundMusic;
 	SpriteBatch batch;
 	Texture background;
 	Texture gameOver;
@@ -71,8 +73,11 @@ public class FlappyBird extends ApplicationAdapter {
 		distanceBetweenTubes = Gdx.graphics.getWidth() / 2;
 		topTubeRectanbles = new Rectangle[numberOfTubes];
 		bottomTubeRectangles = new Rectangle[numberOfTubes];
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("slipthru.mp3"));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.play();
 
-		startRestartLogic();
+        startRestartLogic();
 
 	}
 
@@ -232,4 +237,6 @@ public class FlappyBird extends ApplicationAdapter {
 			velocity = 0;
 		}
 	}
+
+
 }
