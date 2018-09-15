@@ -85,19 +85,9 @@ public class FlappyBird extends ApplicationAdapter {
 		switch (gameState) {
 			case 1:
 				gameStateOne();
-				if (Gdx.input.justTouched()) {
-
-					velocity = -30;
-
-				}
+				justTouched();
 				tubeLogic();
-
-				if (birdY > 0) { //keep bird moving hax velocity < 0
-					velocity = velocity + gravity;
-					birdY -= velocity;
-				} else {
-					gameState = 2;
-				}
+				keepBirdAlive();
 				break;
 			case 0:
 				if (Gdx.input.justTouched()) {
@@ -105,56 +95,10 @@ public class FlappyBird extends ApplicationAdapter {
 				}
 				break;
 			case 2:
-				batch.draw(gameOver, Gdx.graphics.getWidth() / 2 - gameOver.getWidth() / 2, Gdx.graphics.getHeight() / 2 - gameOver.getWidth() / 2);
-
-				if (Gdx.input.justTouched()) {
-					gameState = 1;
-					//call start restart logic
-					startRestartLogic();
-					score = 0;
-					scoringTube = 0;
-					velocity = 0;
-				}
+				restartGame();
 				break;
 
 		}
-
-//		if (gameState == 1) {
-//
-//			gameStateOne();
-//
-//			if (Gdx.input.justTouched()) {
-//
-//				velocity = -30;
-//
-//			}
-//
-//			tubeLogic();
-//
-//			if (birdY > 0) { //keep bird moving hax velocity < 0
-//				velocity = velocity + gravity;
-//				birdY -= velocity;
-//			} else {
-//				gameState = 2;
-//			}
-
-//		} else if (gameState == 0) {
-//
-//			if (Gdx.input.justTouched()) {
-//				gameState = 1;
-//			}
-//			} else if (gameState == 2) {
-//				batch.draw(gameOver, GDXWidth / 2 - gameOver.getWidth() / 2, GDXHeight / 2 - gameOver.getWidth() / 2);
-//
-//				if (Gdx.input.justTouched()) {
-//					gameState = 1;
-//					//call start restart logic
-//					startRestartLogic();
-//					score = 0;
-//					scoringTube = 0;
-//					velocity = 0;
-//				}
-//		}
 
 		animateBird();
 
@@ -235,6 +179,22 @@ public class FlappyBird extends ApplicationAdapter {
 
 		}
 	}
+
+	public void justTouched() {
+		if (Gdx.input.justTouched())
+		{
+			velocity = -30;
+		}
+	}
+
+	public void keepBirdAlive() {
+		if (birdY > 0) { //keep bird moving hax velocity < 0
+			velocity = velocity + gravity;
+			birdY -= velocity;
+		} else {
+			gameState = 2;
+		}
+	}
 	public void collisionDetection() {
 		birdCircle.set(Gdx.graphics.getWidth()/ 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
 		/*
@@ -257,6 +217,19 @@ public class FlappyBird extends ApplicationAdapter {
 				gameState = 2;
 			}
 
+		}
+	}
+
+	public void restartGame() {
+		batch.draw(gameOver, Gdx.graphics.getWidth() / 2 - gameOver.getWidth() / 2, Gdx.graphics.getHeight() / 2 - gameOver.getWidth() / 2);
+
+		if (Gdx.input.justTouched()) {
+			gameState = 1;
+			//call start restart logic
+			startRestartLogic();
+			score = 0;
+			scoringTube = 0;
+			velocity = 0;
 		}
 	}
 }
