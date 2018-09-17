@@ -23,7 +23,7 @@ public class FlappyBird extends ApplicationAdapter {
 	ShapeRenderer shapeRenderer;
 	ShapeRenderer shapeRenderer2;
 	Texture[] birds;
-
+    String [] backgroundX = {"bg.png", "background-night.png"};
 	Texture topTube;
 	Texture bottomTube;
 	float gap = 400;
@@ -36,7 +36,7 @@ public class FlappyBird extends ApplicationAdapter {
 	BitmapFont font;
 	float birdY = 0;
 	float velocity = 0;
-
+    Random random = new Random();
 	int gameState = 0;
 	float gravity = 2;
 	float maxTubeOffSet = 0;
@@ -51,7 +51,9 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		background = new Texture("bg.png");
+        // randomly selects an index from the arr
+        int select = random.nextInt(backgroundX.length);
+		background = new Texture(backgroundX[select]);
 		gameOver = new Texture("flappyGameOver.png");
 		birdCircle = new Circle();
 		font = new BitmapFont();
@@ -60,10 +62,10 @@ public class FlappyBird extends ApplicationAdapter {
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer2 = new ShapeRenderer();
 
-		birds = new Texture[2];
-		birds[0] = new Texture("bird.png");
-		birds[1] = new Texture("bird2.png");
-
+		birds = new Texture[3];
+		birds[0] = new Texture("bluebird-upflap.png");
+		birds[1] = new Texture("bluebird-midflap.png");
+		birds[2] = new Texture("bluebird-downflap.png");
 
 		topTube = new Texture("toptube.png");
 		bottomTube = new Texture("bottomtube.png");
