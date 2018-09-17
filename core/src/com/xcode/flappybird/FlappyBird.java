@@ -23,8 +23,10 @@ public class FlappyBird extends ApplicationAdapter {
 	ShapeRenderer shapeRenderer;
 	ShapeRenderer shapeRenderer2;
 	Texture[] birds;
+	String [] musicList = {"Callista.mp3", "slipthru.mp3", "VelvetSakiKaskas.mp3"};
     String [] backgroundX = {"bg.png", "background-night.png"};
 	Texture topTube;
+	Texture base;
 	Texture bottomTube;
 	float gap = 400;
 	Circle birdCircle;
@@ -52,9 +54,11 @@ public class FlappyBird extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
         // randomly selects an index from the arr
-        int select = random.nextInt(backgroundX.length);
-		background = new Texture(backgroundX[select]);
+        int backgroundSelect = random.nextInt(backgroundX.length);
+        int musicSelect = random.nextInt(musicList.length);
+		background = new Texture(backgroundX[backgroundSelect]);
 		gameOver = new Texture("flappyGameOver.png");
+		base = new Texture("base.png");
 		birdCircle = new Circle();
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
@@ -75,7 +79,7 @@ public class FlappyBird extends ApplicationAdapter {
 		distanceBetweenTubes = Gdx.graphics.getWidth() / 2;
 		topTubeRectanbles = new Rectangle[numberOfTubes];
 		bottomTubeRectangles = new Rectangle[numberOfTubes];
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("slipthru.mp3"));
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicList[musicSelect]));
         backgroundMusic.setLooping(true);
         backgroundMusic.play();
 
@@ -128,6 +132,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 	public void drawBackgroud() {
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
 	}
 
 	public void gameStateOne() {
