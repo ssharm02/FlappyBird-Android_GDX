@@ -55,7 +55,8 @@ public class FlappyBird extends ApplicationAdapter {
 		batch = new SpriteBatch();
         // randomly selects an index from the arr
         int backgroundSelect = random.nextInt(backgroundX.length);
-        int musicSelect = random.nextInt(musicList.length);
+
+
 		background = new Texture(backgroundX[backgroundSelect]);
 		gameOver = new Texture("flappyGameOver.png");
 		base = new Texture("base.png");
@@ -79,9 +80,7 @@ public class FlappyBird extends ApplicationAdapter {
 		distanceBetweenTubes = Gdx.graphics.getWidth() / 2;
 		topTubeRectanbles = new Rectangle[numberOfTubes];
 		bottomTubeRectangles = new Rectangle[numberOfTubes];
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicList[musicSelect]));
-        backgroundMusic.setLooping(true);
-        backgroundMusic.play();
+		playMusic();
 
         startRestartLogic();
 
@@ -101,9 +100,8 @@ public class FlappyBird extends ApplicationAdapter {
 				keepBirdAlive();
 				break;
 			case 0:
-				if (Gdx.input.justTouched()) {
-					gameState = 1;
-				}
+				restartOnTouch();
+
 				break;
 			case 2:
 				restartGame();
@@ -245,5 +243,17 @@ public class FlappyBird extends ApplicationAdapter {
 		}
 	}
 
+	public void restartOnTouch() {
+		if (Gdx.input.justTouched()) {
+			gameState = 1;
+		}
+	}
+
+	public void playMusic() {
+		int musicSelect = random.nextInt(musicList.length);
+		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicList[musicSelect]));
+		backgroundMusic.setLooping(true);
+		backgroundMusic.play();
+	}
 
 }
