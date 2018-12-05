@@ -1,8 +1,8 @@
 package com.xcode.flappybird;
 
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,13 +14,11 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
-/**
- * Created by julienvillegas on 17/01/2017.
- */
 public class OptionScreen implements Screen {
 
     private Stage stage;
     private Game game;
+    private int highScore = 10;
 
     public OptionScreen(Game aGame) {
         game = aGame;
@@ -32,13 +30,21 @@ public class OptionScreen implements Screen {
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
 
+        Preferences prefs = Gdx.app.getPreferences("My Preferences");
+        String name = prefs.getString("name", "No name stored");
+        int score = prefs.getInteger("highScore", highScore);
+        prefs.putInteger("highScore", highScore);
+        score = prefs.getInteger("highscore");
+
+
+        System.out.println("SCORE IS !@@###### " + score);
         TextButton backButton = new TextButton("Go Back",MyGdxGame.gameSkin);
         backButton.setWidth(Gdx.graphics.getWidth()/2);
         backButton.setPosition(Gdx.graphics.getWidth()/2-backButton.getWidth()/2,Gdx.graphics.getHeight()/4-backButton.getHeight()/2);
         backButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new com.xcode.flappybird.TitleScreen(game));// com.mygdx.game.Screens.TitleScreen(game));
+                game.setScreen(new com.xcode.flappybird.TitleScreen(game));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -62,24 +68,16 @@ public class OptionScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() {}
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {

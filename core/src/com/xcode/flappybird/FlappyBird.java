@@ -7,15 +7,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.Random;
@@ -32,11 +32,12 @@ public class FlappyBird implements Screen {
 	private ShapeRenderer shapeRenderer;
 	private ShapeRenderer shapeRenderer2;
 	private Texture[] birds;
+	private Texture explosion;
 	private String [] musicList = {"Callista.mp3", "slipthru.mp3", "VelvetSakiKaskas.mp3"};
     private String [] backgroundX = {"background-night.png", "BackGround1.png"};
 	private Texture topTube;
 	private Texture base;
-	private  Texture bottomTube;
+	private Texture bottomTube;
 	private float gap = 400;
 	private Circle birdCircle;
 	private Rectangle[] topTubeRectanbles;
@@ -69,7 +70,7 @@ public class FlappyBird implements Screen {
 		int backgroundSelect = random.nextInt(backgroundX.length);
 
 		background = new Texture(backgroundX[backgroundSelect]);
-		gameOver = new Texture("GameOverX.jpg");
+		gameOver = new Texture("GameOver3.png");
 		base = new Texture("base.png");
 		birdCircle = new Circle();
 		font = new BitmapFont();
@@ -83,7 +84,7 @@ public class FlappyBird implements Screen {
 		birds[1] = new Texture("Helicopter2.png");
 		birds[2] = new Texture("Helicopter3.png");
 		birds[3] = new Texture("Helicopter4.png");
-
+		explosion = new Texture("Explosion.png");
 		topTube = new Texture("toptube.png");
 		bottomTube = new Texture("bottomtube.png");
 
@@ -104,7 +105,7 @@ public class FlappyBird implements Screen {
 	@Override
 	public void render(float delta) {
 
-		System.out.println("RENDER METHOD IS LAUNCHING");
+		//System.out.println("RENDER METHOD IS LAUNCHING");
 		batch.begin();
 		drawBackgroud();
 		switch (gameState) {
@@ -133,24 +134,16 @@ public class FlappyBird implements Screen {
 
 
 	@Override
-	public void resize(int width, int height) {
-
-	}
+	public void resize(int width, int height) {}
 
 	@Override
-	public void pause() {
-
-	}
+	public void pause() {}
 
 	@Override
-	public void resume() {
-
-	}
+	public void resume() {}
 
 	@Override
-	public void hide() {
-
-	}
+	public void hide() {}
 
 	@Override
 	public void dispose () {
@@ -235,13 +228,14 @@ public class FlappyBird implements Screen {
 	}
 
 	public void collisionDetection() {
+
 		birdCircle.set(Gdx.graphics.getWidth()/ 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
-		/*
-		ShapeRenderer logic for collision detection for the bird
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-		shapeRenderer.setColor(Color.CORAL);
-		shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
-		*/
+
+		//ShapeRenderer logic for collision detection for the bird
+//		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+//		shapeRenderer.setColor(Color.CORAL);
+//		shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
+
 		for (int i = 0; i < numberOfTubes; i++) {
 
 			/*
@@ -250,11 +244,11 @@ public class FlappyBird implements Screen {
 			shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTube.getHeight() + tubeOffSet[i], bottomTube.getWidth(), bottomTube.getHeight());
 			*/
 			if(Intersector.overlaps(birdCircle, topTubeRectanbles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])) {
-				Gdx.app.log("collison be happening", "yes");
-
+					Gdx.app.log("collison be happening", "yes");
+					System.out.println("COLLISION NOW");
+					batch.draw(explosion, 0, 0, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 				gameState = 2;
 			}
-
 		}
 	}
 

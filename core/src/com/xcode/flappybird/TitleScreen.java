@@ -9,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -20,7 +22,7 @@ public class TitleScreen implements Screen {
     private Stage stage;
     private Game game;
     private Texture background;
-
+    public String playerName = "";
     public TitleScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
@@ -30,6 +32,23 @@ public class TitleScreen implements Screen {
         title.setY(Gdx.graphics.getHeight()*2/3);
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
+
+        Label nameLabel = new Label("Name:", MyGdxGame.gameSkin);
+        nameLabel.setAlignment(Align.center);
+        nameLabel.setY(Gdx.graphics.getHeight()*2/3);
+        nameLabel.setWidth(Gdx.graphics.getWidth());
+        stage.addActor(nameLabel);
+
+
+        TextField nameText = new TextField("sarthak", MyGdxGame.gameSkin);
+        Table table = new Table();
+        table.add(nameLabel);
+        table.add(nameText).width(100);
+        table.setY(Gdx.graphics.getHeight()*2/3);
+        table.setWidth(Gdx.graphics.getWidth());
+        playerName = nameText.getText();
+        stage.addActor(table);
+
 
         TextButton playButton = new TextButton("Play!",MyGdxGame.gameSkin);
         playButton.setWidth(Gdx.graphics.getWidth()/2);
@@ -43,6 +62,7 @@ public class TitleScreen implements Screen {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
+
         });
         stage.addActor(playButton);
 
