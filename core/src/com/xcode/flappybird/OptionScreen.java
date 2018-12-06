@@ -36,7 +36,7 @@ public class OptionScreen implements Screen {
     int row_height = Gdx.graphics.getWidth() / 50;
     int Help_Guides = 2;
 
-
+    Label title = new Label(message, MyGdxGame.gameSkin,"small-black");
 
     public OptionScreen(Game aGame) {
         game = aGame;
@@ -66,7 +66,7 @@ public class OptionScreen implements Screen {
             @Override
             public void changed (ChangeEvent event, Actor actor) {
                 message = "";
-
+                title.addAction(Actions.removeActor());
                 int w = Gdx.graphics.getWidth();
                 int h = Gdx.graphics.getHeight();
 
@@ -94,7 +94,7 @@ public class OptionScreen implements Screen {
                         break;
                 }
 
-                 message += "Device Resolution: " + Integer.toString(w) + "," + Integer.toString(h) + "\n";
+                message += "Device Resolution: " + Integer.toString(w) + "," + Integer.toString(h) + "\n";
                 message += "Y axis accel: " + Float.toString(accelY) + " \n";
                 message += "Highest Y value: " + Float.toString(highestY) + " \n";
 
@@ -113,7 +113,7 @@ public class OptionScreen implements Screen {
                     message += "No compass available\n";
                 }
 
-                Label title = new Label(message, MyGdxGame.gameSkin,"small-black");
+                title = new Label(message, MyGdxGame.gameSkin,"small-black");
                 title.setAlignment(Align.center);
                 title.setY(Gdx.graphics.getHeight()*2/3);
                 title.setWidth(Gdx.graphics.getWidth());
