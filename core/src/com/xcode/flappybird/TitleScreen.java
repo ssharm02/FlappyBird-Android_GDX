@@ -27,7 +27,7 @@ public class TitleScreen implements Screen {
         game = aGame;
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("CrazyHelicopter.png"));
-        Label title = new Label("Crayz Helicopter", MyGdxGame.gameSkin,"big-black");
+        Label title = new Label("Crazy Helicopter", MyGdxGame.gameSkin,"big-black");
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()*2/3);
         title.setWidth(Gdx.graphics.getWidth());
@@ -40,14 +40,14 @@ public class TitleScreen implements Screen {
         stage.addActor(nameLabel);
 
 
-        TextField nameText = new TextField("sarthak", MyGdxGame.gameSkin);
-        Table table = new Table();
-        table.add(nameLabel);
-        table.add(nameText).width(100);
-        table.setY(Gdx.graphics.getHeight()*2/3);
-        table.setWidth(Gdx.graphics.getWidth());
-        playerName = nameText.getText();
-        stage.addActor(table);
+//        TextField nameText = new TextField("sarthak", MyGdxGame.gameSkin);
+//        Table table = new Table();
+//        table.add(nameLabel);
+//        table.add(nameText).width(100);
+//        table.setY(Gdx.graphics.getHeight()*2/3);
+//        table.setWidth(Gdx.graphics.getWidth());
+//        playerName = nameText.getText();
+//        stage.addActor(table);
 
 
         TextButton playButton = new TextButton("Play!",MyGdxGame.gameSkin);
@@ -66,7 +66,7 @@ public class TitleScreen implements Screen {
         });
         stage.addActor(playButton);
 
-        TextButton optionsButton = new TextButton("Options",MyGdxGame.gameSkin);
+        TextButton optionsButton = new TextButton("Sensors",MyGdxGame.gameSkin);
         optionsButton.setWidth(Gdx.graphics.getWidth()/2);
         optionsButton.setPosition(Gdx.graphics.getWidth()/2-optionsButton.getWidth()/2,Gdx.graphics.getHeight()/4-optionsButton.getHeight()/2);
         optionsButton.addListener(new InputListener(){
