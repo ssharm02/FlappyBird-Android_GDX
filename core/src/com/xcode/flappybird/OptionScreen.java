@@ -16,14 +16,12 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import sun.management.Sensor;
+
 
 
 public class OptionScreen implements Screen {
@@ -41,20 +39,6 @@ public class OptionScreen implements Screen {
     public OptionScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
-
-
-        // main title
-//        Label title = new Label("Sensors", MyGdxGame.gameSkin,"big-black");
-//        title.setAlignment(Align.center);
-//        title.setY(Gdx.graphics.getHeight()*2/3);
-//        title.setWidth(Gdx.graphics.getWidth());
-//        stage.addActor(title);
-
-//        Preferences prefs = Gdx.app.getPreferences("My Preferences");
-//        String name = prefs.getString("name", "No name stored");
-//        int score = prefs.getInteger("highScore", highScore);
-//        prefs.putInteger("highScore", highScore);
-//        score = prefs.getInteger("highscore");
 
 
         // sensors button
@@ -125,16 +109,7 @@ public class OptionScreen implements Screen {
         }
         );
 
-        TextButton clearButton = new TextButton("Refresh",MyGdxGame.gameSkin);
-        clearButton.setWidth(Gdx.graphics.getWidth()/2);
-        clearButton.setPosition(Gdx.graphics.getWidth()/2-clearButton.getWidth()/2,Gdx.graphics.getHeight()/4-clearButton.getHeight()/2);
-        stage.addActor(clearButton);
-        clearButton.addListener(new ChangeListener() {
-            @Override
-            public void changed (ChangeEvent event, Actor actor){
 
-            }
-       });
 
 
 
