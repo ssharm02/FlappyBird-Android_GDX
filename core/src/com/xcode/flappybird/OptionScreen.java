@@ -41,7 +41,7 @@ public class OptionScreen implements Screen {
     public OptionScreen(Game aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
-        
+
 
         // main title
 //        Label title = new Label("Sensors", MyGdxGame.gameSkin,"big-black");

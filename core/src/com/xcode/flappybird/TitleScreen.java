@@ -27,17 +27,20 @@ public class TitleScreen implements Screen {
         game = aGame;
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("CrazyHelicopter.png"));
-        Label title = new Label("Crazy Helicopter", MyGdxGame.gameSkin,"big-black");
+        Label title = new Label("Helicopter Wars", MyGdxGame.gameSkin,"big-black");
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()*2/3);
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
 
-        Label nameLabel = new Label("Name:", MyGdxGame.gameSkin);
-        nameLabel.setAlignment(Align.center);
-        nameLabel.setY(Gdx.graphics.getHeight()*2/3);
-        nameLabel.setWidth(Gdx.graphics.getWidth());
-        stage.addActor(nameLabel);
+
+
+//        Label nameLabel = new Label("Name:", MyGdxGame.gameSkin);
+//        nameLabel.setAlignment(Align.center);
+//        nameLabel.setY(Gdx.graphics.getHeight()*2/3);
+//        nameLabel.setWidth(Gdx.graphics.getWidth());
+//        stage.addActor(nameLabel);
+
 
 
 //        TextField nameText = new TextField("sarthak", MyGdxGame.gameSkin);

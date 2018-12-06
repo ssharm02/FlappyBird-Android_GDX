@@ -34,7 +34,7 @@ public class FlappyBird implements Screen {
 	private Texture[] birds;
 	private Texture explosion;
 	private String [] musicList = {"Callista.mp3", "slipthru.mp3", "VelvetSakiKaskas.mp3"};
-    private String [] backgroundX = {"background-night.png", "BackGround1.png", "FlappyBirdNightPic.png", "flappyBackground.png", "nightPic.png"};
+    private String [] backgroundX = {"background-night.png", "BackGround1.png", "flappyBackground.png", "nightPic.png"};
 	private Texture topTube;
 	private Texture base;
 	private Texture bottomTube;
@@ -85,8 +85,8 @@ public class FlappyBird implements Screen {
 		birds[2] = new Texture("Helicopter3.png");
 		birds[3] = new Texture("Helicopter4.png");
 		explosion = new Texture("Explosion.png");
-		topTube = new Texture("toptube.png");
-		bottomTube = new Texture("bottomtube.png");
+		topTube = new Texture("UFOA.gif");
+		bottomTube = new Texture("BuildingC.png");
 
 		maxTubeOffSet = Gdx.graphics.getHeight() / 2 - gap / 2 - 100;
 		randomGenerator = new Random();
@@ -229,23 +229,24 @@ public class FlappyBird implements Screen {
 
 	public void collisionDetection() {
 
-		birdCircle.set(Gdx.graphics.getWidth()/ 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
+		birdCircle.set(Gdx.graphics.getWidth()/ 3, birdY + birds[flapState].getHeight() / 3, birds[flapState].getWidth() / 3);
+		//ShapeRenderer logic for collision detection for the bird
 //		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 //		shapeRenderer.setColor(Color.CORAL);
 //		shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
-		//ShapeRenderer logic for collision detection for the bird
+
 
 
 		for (int i = 0; i < numberOfTubes; i++) {
 
 			/*
-			ShapRenderer logic for the top and bottom tubes
+			/ShapRenderer logic for the top and bottom tubes
 			shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffSet[i], topTube.getWidth(), topTube.getHeight());
 			shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTube.getHeight() + tubeOffSet[i], bottomTube.getWidth(), bottomTube.getHeight());
 			*/
 			if(Intersector.overlaps(birdCircle, topTubeRectanbles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])) {
 					Gdx.app.log("collison be happening", "yes");
-//					System.out.println("COLLISION NOW");
+					//System.out.println("COLLISION NOW");
 					batch.draw(explosion, 0, 0, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 				gameState = 2;
 			}
