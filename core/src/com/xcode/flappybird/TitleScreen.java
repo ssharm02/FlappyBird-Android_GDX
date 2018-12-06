@@ -27,27 +27,27 @@ public class TitleScreen implements Screen {
         game = aGame;
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("CrazyHelicopter.png"));
-        Label title = new Label("Crayz Helicopter", MyGdxGame.gameSkin,"big-black");
+        Label title = new Label("Helicopter Wars", MyGdxGame.gameSkin,"big-black");
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()*2/3);
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
 
-        Label nameLabel = new Label("Name:", MyGdxGame.gameSkin);
-        nameLabel.setAlignment(Align.center);
-        nameLabel.setY(Gdx.graphics.getHeight()*2/3);
-        nameLabel.setWidth(Gdx.graphics.getWidth());
-        stage.addActor(nameLabel);
+//        Label nameLabel = new Label("Name:", MyGdxGame.gameSkin);
+//        nameLabel.setAlignment(Align.center);
+//        nameLabel.setY(Gdx.graphics.getHeight()*2/3);
+//        nameLabel.setWidth(Gdx.graphics.getWidth());
+//        stage.addActor(nameLabel);
 
 
-        TextField nameText = new TextField("sarthak", MyGdxGame.gameSkin);
-        Table table = new Table();
-        table.add(nameLabel);
-        table.add(nameText).width(100);
-        table.setY(Gdx.graphics.getHeight()*2/3);
-        table.setWidth(Gdx.graphics.getWidth());
-        playerName = nameText.getText();
-        stage.addActor(table);
+//        TextField nameText = new TextField("sarthak", MyGdxGame.gameSkin);
+//        Table table = new Table();
+//        table.add(nameLabel);
+//        table.add(nameText).width(100);
+//        table.setY(Gdx.graphics.getHeight()*2/3);
+//        table.setWidth(Gdx.graphics.getWidth());
+//        playerName = nameText.getText();
+//        stage.addActor(table);
 
 
         TextButton playButton = new TextButton("Play!",MyGdxGame.gameSkin);
