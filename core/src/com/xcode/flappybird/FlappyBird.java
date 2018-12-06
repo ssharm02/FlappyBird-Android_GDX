@@ -34,7 +34,7 @@ public class FlappyBird implements Screen {
 	private Texture[] birds;
 	private Texture explosion;
 	private String [] musicList = {"Callista.mp3", "slipthru.mp3", "VelvetSakiKaskas.mp3"};
-    private String [] backgroundX = {"background-night.png", "BackGround1.png"};
+    private String [] backgroundX = {"background-night.png", "BackGround1.png", "FlappyBirdNightPic.png", "flappyBackground.png", "nightPic.png"};
 	private Texture topTube;
 	private Texture base;
 	private Texture bottomTube;
@@ -230,11 +230,11 @@ public class FlappyBird implements Screen {
 	public void collisionDetection() {
 
 		birdCircle.set(Gdx.graphics.getWidth()/ 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
-
-		//ShapeRenderer logic for collision detection for the bird
 //		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 //		shapeRenderer.setColor(Color.CORAL);
 //		shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
+		//ShapeRenderer logic for collision detection for the bird
+
 
 		for (int i = 0; i < numberOfTubes; i++) {
 
@@ -245,7 +245,7 @@ public class FlappyBird implements Screen {
 			*/
 			if(Intersector.overlaps(birdCircle, topTubeRectanbles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])) {
 					Gdx.app.log("collison be happening", "yes");
-					System.out.println("COLLISION NOW");
+//					System.out.println("COLLISION NOW");
 					batch.draw(explosion, 0, 0, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 				gameState = 2;
 			}
