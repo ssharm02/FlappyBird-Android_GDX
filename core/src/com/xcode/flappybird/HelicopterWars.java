@@ -106,7 +106,7 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 
 		//System.out.println("RENDER METHOD IS LAUNCHING");
 		batch.begin();
-		drawBackgroud();
+		drawBackground();
 		switch (gameState) {
 			case 1:
 				gameStateOne();
@@ -150,8 +150,6 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 		background.dispose();
 	}
 
-	//Render the background stages
-	public void drawBackgroud() {}
 
 	@Override
 	public void drawBackground() {
