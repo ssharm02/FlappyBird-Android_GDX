@@ -2,17 +2,15 @@ package com.xcode.flappybird;
 
 public interface HelicopterInterface {
 
-    public abstract void drawBackground();
-    public abstract void gameStateOne();
-    public abstract void tubeLogic();
-    public abstract void animateBird();
-    public abstract void startRestartLogic();
-    public abstract void justTouched();
-    public abstract void keepBirdAlive();
-    public abstract void collisionDetection();
-    public abstract void restartGame();
-    public abstract void restartOnTouch();
-    public abstract void playMusic();
-
-
+    void drawBackground();
+    void gameStateOne();
+    void tubeLogic();
+    void animateHelicopter();
+    void startRestartLogic();
+    void justTouched();
+    void keepHeliAlive();
+    void collisionDetection();
+    void restartGame();
+    void restartOnTouch();
+    void playMusic();
 }

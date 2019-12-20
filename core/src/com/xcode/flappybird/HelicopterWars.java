@@ -39,7 +39,7 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 	private Texture base;
 	private Texture bottomTube;
 	private float gap = 400;
-	private Circle birdCircle;
+	private Circle heliCircle;
 	private Rectangle[] topTubeRectanbles;
 	private Rectangle[] bottomTubeRectangles;
 	private int flapState = 0;
@@ -65,13 +65,12 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 		game = aGame;
 		stage = new Stage(new ScreenViewport());
 		batch = new SpriteBatch();
-		// randomly selects an index from the arr
 		int backgroundSelect = random.nextInt(backgroundX.length);
 
 		background = new Texture(backgroundX[backgroundSelect]);
 		gameOver = new Texture("GameOver3.png");
 		base = new Texture("base.png");
-		birdCircle = new Circle();
+		heliCircle = new Circle();
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		font.getData().setScale(10);
@@ -112,7 +111,7 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 				gameStateOne();
 				justTouched();
 				tubeLogic();
-				keepBirdAlive();
+				keepHeliAlive();
 				break;
 			case 0:
 				restartOnTouch();
@@ -121,10 +120,8 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 				restartGame();
 				break;
 		}
-		animateBird();
+		animateHelicopter();
 		font.draw(batch, String.valueOf(score), 100, 200);
-		// birdCircle.set(Gdx.graphics.getWidth()/ 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
-
 		collisionDetection();
 
 		batch.end();
@@ -184,7 +181,7 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 		}
 	}
 
-	public void animateBird() {
+	public void animateHelicopter() {
 		if (flapState == 0) {
 			flapState = 1;
 		} else {
@@ -217,7 +214,7 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 		}
 	}
 
-	public void keepBirdAlive() {
+	public void keepHeliAlive() {
 		if (birdY > 0) { //keep bird moving hax velocity < 0
 			velocity = velocity + gravity;
 			birdY -= velocity;
@@ -228,22 +225,11 @@ public class HelicopterWars implements Screen, HelicopterInterface {
 
 	public void collisionDetection() {
 
-		birdCircle.set(Gdx.graphics.getWidth()/ 3, birdY + birds[flapState].getHeight() / 3, birds[flapState].getWidth() / 3);
-		/*ShapeRenderer logic for collision detection for the bird
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-		shapeRenderer.setColor(Color.CORAL);
-		shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
-		*/
-
+		heliCircle.set(Gdx.graphics.getWidth()/ 3, birdY + birds[flapState].getHeight() / 3, birds[flapState].getWidth() / 3);
 
 		for (int i = 0; i < numberOfTubes; i++) {
 
-			/*More Collision detection
-			/ShapRenderer logic for the top and bottom tubes
-			shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffSet[i], topTube.getWidth(), topTube.getHeight());
-			shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTube.getHeight() + tubeOffSet[i], bottomTube.getWidth(), bottomTube.getHeight());
-			*/
-			if(Intersector.overlaps(birdCircle, topTubeRectanbles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])) {
+			if(Intersector.overlaps(heliCircle, topTubeRectanbles[i]) || Intersector.overlaps(heliCircle, bottomTubeRectangles[i])) {
 					//Gdx.app.log("collison be happening", "yes");
 					//System.out.println("COLLISION NOW");
 					batch.draw(explosion, 0, 0, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
